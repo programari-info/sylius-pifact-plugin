@@ -66,6 +66,7 @@ programari_sylius_pifact:
 This plugin adds some fields to Channel (API Bearer) and Address (TaxId) entities.
 
 Add PifactAddressTrait to: src/Entity/Addressing/Address.php
+
 ```php
 
 declare(strict_types=1);
@@ -86,6 +87,7 @@ class Address extends BaseAddress
 
 
 Add PifactChannelTrait to: src/Entity/Channel/Channel.php
+
 ```php
 
 declare(strict_types=1);
@@ -112,3 +114,4 @@ After configuration, run the following command at project root to create the dat
 ```bash
 $ bin/console doctrine:migrations:migrate
 ```
+Enjoy!
