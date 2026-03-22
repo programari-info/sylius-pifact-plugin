@@ -37,20 +37,16 @@ You may need to add the following to your composer.json file:
 Use composer to install the plugin after Sylius is installed:
 
 ```bash
+$ composer config extra.symfony.allow-contrib true
 $ composer require programari-info/sylius-pifact-plugin
 ```
 
-If you found this error then you need to add repository to your composer.json file:
-```
-Your requirements could not be resolved to an installable set of packages.
-
-  Problem 1
-    - Root composer.json requires programari-info/sylius-pifact-plugin, it could not be found in any version, there may be a typo in the package name.
-
-```
 
 
 # Configuration
+
+If you allowed symfony/flex to install recipes of the plugin, you may skip the next steps. Check it.
+
 ## Add configuration
 Create a file called `config/packages/programari_sylius_pifact.yaml` and add the following configuration:
 ```
