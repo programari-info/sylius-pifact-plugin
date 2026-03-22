@@ -128,5 +128,5 @@ Enjoy!
 8. Use the button to Test It. It will check for some typical configuration errors. You need to have an order to test it `and solve all errors to be able to receive orders`.
 
 When an order is paid, Sylius Invoicing plugin will create an invoice. 
-This plugin will post it to your account at PiFact and send it to the customer.
+SyliusPifact plugin will post it to your account at PiFact and send it to the customer.
 Is recommended to disable PDF generation in Sylius Invoicing plugin because it is done at PiFact.
