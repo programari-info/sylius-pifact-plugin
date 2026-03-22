@@ -115,3 +115,18 @@ After configuration, run the following command at project root to create the dat
 $ bin/console doctrine:migrations:migrate
 ```
 Enjoy!
+
+
+# Use
+1. Go to your Sylius admin panel and create Payment methods, USE THE SAME CODE AS IN PIFACT Payment Methods.
+2. Go to your Sylius admin panel and configure provinces if you need to calculate taxes based on them.
+3. Check the Sylius tax configuration. It will be tested on next steps.
+4. Go to your PiFact account at https://www.pifact.com, go to Configuration/Company and get your API Bearer code.
+5. Go to your Sylius admin panel and edit your channel.
+6. Add your API Bearer code in the API Bearer field.
+7. Save your changes.
+8. Use the button to Test It. It will check for some typical configuration errors. You need to have an order to test it `and solve all errors to be able to receive orders`.
+
+When an order is paid, Sylius Invoicing plugin will create an invoice. 
+This plugin will post it to your account at PiFact and send it to the customer.
+Is recommended to disable PDF generation in Sylius Invoicing plugin because it is done at PiFact.
