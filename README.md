@@ -15,3 +15,88 @@ Este plugin para Sylius añade funcionalidades mediante los servicios API de pif
 Obtén más información sobre lo que PiFact puede hacer por ti en https://www.pifact.com
 
 Necesitas una cuenta en pifact.com para usar este plugin. Hay una versión gratuita que puedes usar para probarlo.
+
+# Installation
+
+You may need to add the following to your composer.json file:
+
+```composer
+"repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/programari-info/sylius-pifact-plugin.git"
+    }
+  ],
+```
+
+Use composer to install the plugin after Sylius is installed:
+
+```bash
+$ composer require programari-info/sylius-pifact-plugin
+```
+# Configuration
+## Add configuration
+Create a file called `config/packages/programari_sylius_pifact.yaml` and add the following configuration:
+```
+imports:
+    - { resource: "@ProgramariSyliusPifactPlugin/config/config.yaml" }
+
+```
+## Add routes
+Create a file called `config/routes/programari_sylius_pifact.yaml` and add the following configuration:
+```
+programari_sylius_pifact:
+    resource: "@ProgramariSyliusPifactPlugin/config/routes.yaml"
+
+```
+
+## Extend entities
+This plugin adds some fields to Channel (API Bearer) and Address (TaxId) entities.
+
+Add PifactAddressTrait to: src/Entity/Addressing/Address.php
+```php
+
+declare(strict_types=1);
+
+namespace App\Entity\Addressing;
+
+use Doctrine\ORM\Mapping as ORM;
+use Programari\SyliusPifactPlugin\Entity\PifactAddressTrait;
+use Sylius\Component\Core\Model\Address as BaseAddress;
+#[ORM\Entity]
+#[ORM\Table(name: 'sylius_address')]
+class Address extends BaseAddress
+{
+  use PifactAddressTrait;
+}
+
+```
+
+
+Add PifactChannelTrait to: src/Entity/Channel/Channel.php
+```php
+
+declare(strict_types=1);
+
+namespace App\Entity\Channel;
+
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Programari\SyliusPifactPlugin\Entity\PifactChannelTrait;
+use Sylius\Component\Core\Model\Channel as BaseChannel;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'sylius_channel')]
+class Channel extends BaseChannel
+{
+    use PifactChannelTrait;
+}
+
+```
+
+# Database migrations
+After configuration, run the following command at project root to create the database tables:
+
+```bash
+$ bin/console doctrine:migrations:migrate
+```
