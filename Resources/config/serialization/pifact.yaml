@@ -1,0 +1,174 @@
+Programari\SyliusPifactPlugin\Entity\PifactInvoice:
+    attributes:
+        id:
+            groups: ['pifact:write']
+        invoice:
+            groups: ['pifact:write']
+        pdfUrl:
+            serialized_name: pdfUrl
+            groups: ['pifact:write']
+        customerTaxId:
+            serialized_name: customerTaxId
+            groups: ['pifact:write']
+        number:
+            groups: ['pifact:write']
+        email:
+            groups: ['pifact:write']
+        moneyBase:
+            serialized_name: moneyBase
+            groups: ['pifact:write']
+        orderNumber:
+            serialized_name: orderNumber
+            groups: ['pifact:write']
+        apiTest:
+            serialized_name: apiTest
+            groups: ['pifact:write']
+        customerId:
+            serialized_name: customerId
+            groups: ['pifact:write']
+        paymentMethod:
+            serialized_name: paymentMethod
+            groups: ['pifact:write']
+
+Sylius\InvoicingPlugin\Entity\Invoice:
+    attributes:
+        number:
+            serialized_name: number
+            groups: ['pifact:write']
+        issuedAt:
+            serialized_name: issuedAt
+            groups: ['pifact:write']
+        currencyCode:
+            serialized_name: currencyCode
+            groups: ['pifact:write']
+        localeCode:
+            serialized_name: localeCode
+            groups: ['pifact:write']
+        total:
+            serialized_name: total
+            groups: ['pifact:write']
+        paymentState:
+            groups: ['pifact:write']
+        billingData:
+            groups: ['pifact:write']
+        lineItems:
+            groups: ['pifact:write']
+        taxItems:
+            groups: ['pifact:write']
+        shopBillingData:
+            groups: ['pifact:write']
+        channel:
+            ignore: true
+
+Sylius\InvoicingPlugin\Entity\BillingData:
+    attributes:
+        firstName:
+            serialized_name: firstName
+            groups: ['pifact:write']
+        lastName:
+            serialized_name: lastName
+            groups: ['pifact:write']
+        countryCode:
+            serialized_name: countryCode
+            groups: ['pifact:write']
+        street:
+            serialized_name: street
+            groups: ['pifact:write']
+        city:
+            serialized_name: city
+            groups: ['pifact:write']
+        postcode:
+            serialized_name: postcode
+            groups: ['pifact:write']
+        provinceCode:
+            serialized_name: provinceCode
+            groups: ['pifact:write']
+        provinceName:
+            serialized_name: provinceName
+            groups: ['pifact:write']
+        company:
+            serialized_name: company
+            groups: ['pifact:write']
+        pifactTaxId:
+            serialized_name: taxId
+            groups: ['pifact:write']
+        pifactEmail:
+            serialized_name: email
+            groups: ['pifact:write']
+        pifactCustomerId:
+            serialized_name: id
+            groups: ['pifact:write']
+
+Sylius\InvoicingPlugin\Entity\LineItem:
+    attributes:
+        name:
+            serialized_name: name
+            groups: ['pifact:write']
+        quantity:
+            serialized_name: quantity
+            groups: ['pifact:write']
+        unitPrice:
+            serialized_name: unitPrice
+            groups: ['pifact:write']
+        discountedUnitNetPrice:
+            serialized_name: discountedUnitNetPrice
+            groups: ['pifact:write']
+        subtotal:
+            serialized_name: subtotal
+            groups: ['pifact:write']
+        taxRate:
+            serialized_name: taxRate
+            groups: ['pifact:write']
+        taxTotal:
+            serialized_name: taxTotal
+            groups: ['pifact:write']
+        total:
+            serialized_name: total
+            groups: ['pifact:write']
+        variantName:
+            serialized_name: variantName
+            groups: ['pifact:write']
+        variantCode:
+            serialized_name: variantCode
+            groups: ['pifact:write']
+        invoice:
+            ignore: true
+
+Sylius\InvoicingPlugin\Entity\TaxItem:
+    attributes:
+        label:
+            serialized_name: label
+            groups: ['pifact:write']
+        amount:
+            groups: ['pifact:write']
+        invoice:
+            ignore: true
+
+Sylius\InvoicingPlugin\Entity\InvoiceShopBillingData:
+    attributes:
+        company:
+            serialized_name: company
+            groups: ['pifact:write']
+        taxId:
+            serialized_name: taxId
+            groups: ['pifact:write']
+        countryCode:
+            serialized_name: countryCode
+            groups: ['pifact:write']
+        street:
+            serialized_name: street
+            groups: ['pifact:write']
+        city:
+            serialized_name: city
+            groups: ['pifact:write']
+        postcode:
+            serialized_name: postcode
+            groups: ['pifact:write']
+        representative:
+            serialized_name: representative
+            groups: ['pifact:write']
+
+App\Entity\Channel\Channel:
+    attributes:
+        bearer:
+            ignore: true

@@ -1,0 +1,107 @@
+# Put your plugin configuration here
+
+#imports:
+#    - { resource: "twig_hooks/sylius.yaml" }
+
+
+sylius_grid:
+    grids:
+        sylius_invoicing_invoice:
+            fields:
+                pifactnumber:
+                    type: twig
+                    label: sylius_invoicing.ui.invoice_number
+                    path: id
+                    options:
+                        template: "@ProgramariSyliusPifactPlugin/admin/shared/grid/field/pifact_number.html.twig"
+                    sortable: true
+                number:
+                    enabled: false
+
+#
+#
+#sylius_resource:
+#    resources:
+#        pifact_invoice:
+#            classes:
+#                model: Programari\SyliusPifactPlugin\Entity\PifactInvoice
+#                repository: Programari\SyliusPifactPlugin\Repository\PifactInvoiceRepository
+#
+
+services:
+    Programari\SyliusPifactPlugin\Controller\:
+        resource: '../src/Controller'
+        tags: [ 'controller.service_arguments' ]
+
+
+
+sylius_twig_hooks:
+    hooks:
+
+        'sylius_admin.invoice.show.content.sections.buyer':
+            pifacttaxid:
+                template: '@ProgramariSyliusPifactPlugin/admin/invoice/show/content/sections/buyer/pifacttaxid.html.twig'
+                priority: -500
+        #        'sylius_admin.invoice.show.content.header.title_block.title':
+        #            number:
+        #                template: 'admin/invoice/show/content/header/title_block/title/number.html.twig'
+        #                priority: 100
+        #        'sylius_admin.order.show.content.sections.invoices.table.body':
+        #            number:
+        #                template: 'admin/order/show/content/sections/invoices/table/body/number.html.twig'
+        #                priority: 300
+        'sylius_admin.invoice.show.content.header.title_block.actions':
+            download_pifact:
+                template: '@SyliusInvoicingPlugin/admin/shared/action/download.html.twig'
+                #                enabled: '%sylius_invoicing.pdf_generator.enabled%'
+                priority: 100
+        'sylius_admin.order.create.content.form.billing_address':
+            pifacttaxid:
+                template: "@ProgramariSyliusPifactPlugin/admin/order/form/common/pifacttaxid.html.twig"
+                priority: 0
+        'sylius_admin.order.update.content.form.billing_address':
+            pifacttaxid:
+                template: "@ProgramariSyliusPifactPlugin/admin/order/form/common/pifacttaxid.html.twig"
+                priority: 0
+        'sylius_admin.order.create.content.form.shipping_address':
+            pifacttaxid:
+                template: "@ProgramariSyliusPifactPlugin/admin/order/form/common/pifacttaxid.html.twig"
+                priority: 0
+        'sylius_admin.order.update.content.form.shipping_address':
+            pifacttaxid:
+                template: "@ProgramariSyliusPifactPlugin/admin/order/form/common/pifacttaxid.html.twig"
+                priority: 0
+        'sylius_shop.account.order.show.content.main.summary.invoices.card.body.table.body':
+            download_pdfurl:
+                template: '@SyliusInvoicingPlugin/shop/order/show/content/summary/invoices/card/body/table/body/download.html.twig'
+                enabled: true
+                priority: 0
+        #            number:
+        #                template: '@SyliusInvoicingPlugin/shop/order/show/content/summary/invoices/card/body/table/body/number.html.twig'
+        #                priority: 200
+        'sylius_shop.shared.address':
+            pifacttaxid:
+                template: "@SyliusShop/shared/address/pifacttaxid.html.twig"
+                priority: 500
+
+        'sylius_shop.shared.form.address':
+            pifacttaxid:
+                template: '@SyliusShop/shared/form/address/pifacttaxid.html.twig'
+                priority: -670
+        'sylius_admin.country.create.content.form.sections.general':
+            pifact_provinces_help:
+                template: '@ProgramariSyliusPifactPlugin/admin/country/form/sections/general/provinces_help.html.twig'
+                priority: 10
+        'sylius_admin.country.update.content.form.sections.general':
+            pifact_provinces_help:
+                template: '@ProgramariSyliusPifactPlugin/admin/country/form/sections/general/provinces_help.html.twig'
+                priority: 10
+        'sylius_admin.channel.create.content.form.sections':
+            pifactbearer:
+                template: '@ProgramariSyliusPifactPlugin/admin/channel/form/sections/pifactbearer.html.twig'
+                priority: 250
+        'sylius_admin.channel.update.content.form.sections':
+            pifactbearer:
+                template: '@ProgramariSyliusPifactPlugin/admin/channel/form/sections/pifactbearer.html.twig'
+                priority: 250
+

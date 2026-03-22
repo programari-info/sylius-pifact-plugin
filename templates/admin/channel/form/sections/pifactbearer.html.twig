@@ -1,0 +1,49 @@
+<div class="g-col-12 g-col-xl-6 g-start-xl-7 card">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-9 g-col-9 g-col-xl-6 g-start-xl-7">
+                {{ form_row(hookable_metadata.context.form.bearer, sylius_test_form_attribute('bearer')) }}
+            </div>
+
+            <div class="col-3 g-col-3 g-col-xl-6 g-start-xl-7">
+                <button class="btn btn-info" id="testApi"
+                        data-pifact-api-url="{{ url('pifact_test_api', { channel_code: 'APITEST'}) }}"
+                >{{ 'pifact.ui.apitest' | trans }}</button>
+            </div>
+            <div id="pifact_message" class="text-bg-danger"></div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const button = document.querySelector('[data-pifact-api-url]')
+        button.addEventListener('click', piFactTestApi);
+    });
+
+    function piFactTestApi(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const code = document.querySelector('input[name="sylius_admin_channel[code]"]')
+        const button = document.querySelector('[data-pifact-api-url]')
+        let url = button.dataset.pifactApiUrl
+        url = url.replace('APITEST', code.value);
+        console.log(url)
+        fetch(url)
+            .then(response => response.json())
+            .then(data => piFactDisplayMessage(data))
+        return false;
+    }
+    function piFactDisplayMessage(data) {
+        const messageElement = document.getElementById('pifact_message');
+        if ('OK' === data.status) {
+            messageElement.textContent = 'Order tested: ' + data.number + ' -> ' + data.message;
+            messageElement.classList.remove('text-bg-danger');
+            messageElement.classList.add('text-bg-success');
+        } else {
+            messageElement.textContent = data.message + '. Order tested: ' + data.number ;
+            messageElement.classList.remove('text-bg-success');
+            messageElement.classList.add('text-bg-danger');
+        }
+    }
+
+</script>

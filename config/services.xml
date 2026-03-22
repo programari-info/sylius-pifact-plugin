@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <imports>
+        <import resource="services/**" />
+    </imports>
+
+    <services>
+        <defaults autoconfigure="true" autowire="true" public="false">
+
+        </defaults>
+        <service id="pifact.twig.extension.invoice"
+                 class="Programari\SyliusPifactPlugin\Twig\PifactTwigInvoiceExtension"
+                 public="true"
+                 autoconfigure="true"
+                 autowire="true"
+            >
+        </service>
+
+        <service id="Programari\SyliusPifactPlugin\Services\Api" public="true"/>
+
+
+        <service id="sylius_invoicing.creator.invoice" class="Programari\SyliusPifactPlugin\Creator\InvoiceCreator">
+            <argument type="service" id="sylius_invoicing.repository.invoice" />
+            <argument type="service" id="sylius.repository.order" />
+            <argument type="service" id="sylius_invoicing.generator.invoice" />
+            <argument type="service" id="sylius_invoicing.generator.invoice_pdf_file" />
+            <argument type="service" id="sylius_invoicing.manager.invoice_file" />
+            <argument>%sylius_invoicing.pdf_generator.enabled%</argument>
+            <argument type="service" id="Programari\SyliusPifactPlugin\Services\Api" />
+        </service>
+
+        <service id="sylius_shop.modifier.default_address_form_values"
+                 class="Programari\SyliusPifactPlugin\Modifier\PiFactAddressFormValuesModifier"
+                 public="true"
+        >
+            <tag name="sylius_shop.modifier.address_form_values" />
+        </service>
+        <service id="Programari\SyliusPifactPlugin\Repository\PifactInvoiceRepositoryInterface" alias="pifact.repository.pifact_invoice" />
+
+        <service id="pifact.repository.pifact_invoice" class="Programari\SyliusPifactPlugin\Repository\PifactInvoiceRepository">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service">
+                <service class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <factory service="doctrine.orm.entity_manager" method="getClassMetadata" />
+                    <argument>Programari\SyliusPifactPlugin\Entity\PifactInvoice</argument>
+                </service>
+            </argument>
+        </service>
+
+        <service id="pifact.form.extension.type.address"
+                 class="Programari\SyliusPifactPlugin\Form\Extension\AddressTypeExtension"
+
+        >
+            <tag name="form.type_extension"  />
+
+        </service>
+
+
+        <service id="pifact.form.extension.type.channel"
+                 class="Programari\SyliusPifactPlugin\Form\Extension\ChannelTypeExtension"
+                 public="true"
+        >
+            <tag name="form.type_extension" priority="100" />
+        </service>
+
+    </services>
+</container>

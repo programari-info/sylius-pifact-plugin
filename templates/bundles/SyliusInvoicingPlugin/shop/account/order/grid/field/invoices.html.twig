@@ -1,0 +1,17 @@
+{% set invoices = invoices_for_order(data) %}
+{% if invoices is empty %}
+    <span class="text-muted">—</span>
+{% else %}
+{#    {% set pdf_enabled = invoices_pdf_enabled() %}#}
+    {% for invoice in invoices %}
+        {% if pifact_pdfurl(invoice) %}
+            <div>
+                <a href="{{ pifact_pdfurl(invoice.id) }}" {{ sylius_test_html_attribute('invoice-link') }}>{{ pifact_number(invoice) }}</a>
+            </div>
+        {% else %}
+            <div>
+                <span {{ sylius_test_html_attribute('invoice-number') }}>{{ pifact_number(invoice) }}</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

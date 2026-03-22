@@ -1,0 +1,5 @@
+programari_sylius_pifact_admin:
+    resource: "@ProgramariSyliusPifactPlugin/config/routes/admin.yaml"
+
+programari_sylius_pifact_shop:
+    resource: "@ProgramariSyliusPifactPlugin/config/routes/shop.yaml"

@@ -1,0 +1,15 @@
+
+#pifact_test_api:
+#    path: /admin/pifact-test-api/{channel_code}
+#    methods: [ GET ]
+#    format: json
+#    defaults:
+#        _controller: \Programari\SyliusPifactPlugin\Controller\PifactApiController::testApi
+#
+
+
+pifact_controllers:
+    resource:
+        path: '@ProgramariSyliusPifactPlugin/src/Controller/'
+        namespace: Programari\SyliusPifactPlugin\Controller
+    type: attribute
