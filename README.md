@@ -114,7 +114,7 @@ After configuration, run the following command at project root to create the dat
 ```bash
 $ bin/console doctrine:migrations:migrate
 ```
-Enjoy!
+
 
 
 # Use
@@ -130,3 +130,5 @@ Enjoy!
 When an order is paid, Sylius Invoicing plugin will create an invoice. 
 SyliusPifact plugin will post it to your account at PiFact and send it to the customer.
 Is recommended to disable PDF generation in Sylius Invoicing plugin because it is done at PiFact.
+
+Enjoy!
