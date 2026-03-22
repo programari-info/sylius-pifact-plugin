@@ -1,0 +1,61 @@
+{
+    "manifests": {
+        "programari-info/sylius-pifact-plugin": {
+            "manifest": {
+                "bundles": {
+                    "Programari\\SyliusPifactPlugin\\ProgramariSyliusPifactPlugin": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "add-lines": [
+                    {
+                        "file": "src/Entity/Addressing/Address.php",
+                        "content": "\n\nuse Doctrine\\ORM\\Mapping as ORM;\nuse Programari\\SyliusPifactPlugin\\Entity\\PifactAddressTrait;\n\n#[ORM\\Entity]\n#[ORM\\Table(name: 'sylius_address')]\n",
+                        "position": "after_target",
+                        "target": "use Sylius\\Component\\Core\\Model\\Address as BaseAddress;"
+                    },
+                    {
+                        "file": "src/Entity/Addressing/Address.php",
+                        "content": "\n\nuse PifactAddressTrait;",
+                        "position": "after_target",
+                        "target": "{"
+                    },
+                    {
+                        "file": "src/Entity/Channel/Channel.php",
+                        "content": "\n\nuse Doctrine\\ORM\\Mapping as ORM;\nuse Programari\\SyliusPifactPlugin\\Entity\\PifactChannelTrait;\n\n#[ORM\\Entity]\n#[ORM\\Table(name: 'sylius_channel')]\n",
+                        "position": "after_target",
+                        "target": "use Sylius\\Component\\Core\\Model\\Channel as BaseChannel;"
+                    },
+                    {
+                        "file": "src/Entity/Channel/Channel.php",
+                        "content": "\n\nuse PifactChannelTrait;",
+                        "position": "after_target",
+                        "target": "{"
+                    }
+                ]
+            },
+            "files": {
+                "config/packages/programari_sylius_pifact.yaml": {
+                    "contents": [
+                        "imports:",
+                        "    - { resource: \"@ProgramariSyliusPifactPlugin/config/config.yaml\" }",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/programari_sylius_pifact.yaml": {
+                    "contents": [
+                        "programari_sylius_pifact:",
+                        "    resource: \"@ProgramariSyliusPifactPlugin/config/routes.yaml\"",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "a5ab6b42290f7f771e18b3b025d80e6b46609b2f"
+        }
+    }
+}
