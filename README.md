@@ -18,6 +18,11 @@ Necesitas una cuenta en pifact.com para usar este plugin. Hay una versión gratu
 
 # Installation
 
+You need a running Sylius 2.+ installation.
+You can install Sylius 2.x with the [Sylius](https://github.com/Sylius/Sylius) project.
+
+This project requires Sylius Invoicing plugin, it will be installed automatically when you install this plugin.
+
 You may need to add the following to your composer.json file:
 
 ```composer
@@ -34,6 +39,17 @@ Use composer to install the plugin after Sylius is installed:
 ```bash
 $ composer require programari-info/sylius-pifact-plugin
 ```
+
+If you found this error then you need to add repository to your composer.json file:
+```
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+    - Root composer.json requires programari-info/sylius-pifact-plugin, it could not be found in any version, there may be a typo in the package name.
+
+```
+
+
 # Configuration
 ## Add configuration
 Create a file called `config/packages/programari_sylius_pifact.yaml` and add the following configuration:

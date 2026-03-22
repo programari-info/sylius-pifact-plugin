@@ -1,5 +1,5 @@
 {
-    "name": "programari/sylius-pifact-plugin",
+    "name": "programari-info/sylius-pifact-plugin",
     "type": "sylius-plugin",
     "description": "Interface with PiFact",
     "keywords": [
