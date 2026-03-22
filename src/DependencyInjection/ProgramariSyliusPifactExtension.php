@@ -21,9 +21,9 @@ final class ProgramariSyliusPifactExtension extends AbstractResourceExtension im
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
 
         $loader->load('services.xml');
-//        $configuration = $this->getConfiguration([], $container);
-//
-//        $config = $this->processConfiguration($configuration, $configs);
+        $configuration = new Configuration();
+
+        $config = $this->processConfiguration($configuration, $configs);
     }
 
     public function prepend(ContainerBuilder $container): void

@@ -59,7 +59,11 @@
             "dev-master": "2.0-dev"
         },
         "symfony": {
-            "require": "^7.4"
+            "require": "^7.4",
+            "endpoint": [
+                "https://api.github.com/repos/programari-info/programari-recipes/contents/recipes/index.json",
+                "flex://defaults"
+            ]
         },
         "public-dir": "vendor/sylius/test-application/public"
     },
