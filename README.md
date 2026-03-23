@@ -121,7 +121,7 @@ $ bin/console doctrine:migrations:migrate
 1. Go to your Sylius admin panel and create Payment methods, USE THE SAME CODE AS IN PIFACT Payment Methods.
 2. Go to your Sylius admin panel and configure provinces if you need to calculate taxes based on them.
 3. Check the Sylius tax configuration. It will be tested on next steps.
-4. Go to your PiFact account at https://www.pifact.com, go to Configuration/Company and get your API Bearer code.
+4. Go to your PiFact account at https://www.pifact.com, click in Top Right User Menu, and go to Configuration and get your API Bearer code.
 5. Go to your Sylius admin panel and edit your channel.
 6. Add your API Bearer code in the API Bearer field.
 7. Save your changes.
